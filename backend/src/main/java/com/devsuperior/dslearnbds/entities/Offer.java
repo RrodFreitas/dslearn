@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,10 @@ public class Offer implements Serializable {
 	private String edition;
 	private Instant startMoment;
 	private Instant endMoment;
+	
+	@ManyToOne
+	@JoinColumn(name = "course_id")
+	private Course course;
 	
 	public Offer() {
 	}
