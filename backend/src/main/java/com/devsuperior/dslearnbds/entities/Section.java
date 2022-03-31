@@ -1,7 +1,6 @@
 package com.devsuperior.dslearnbds.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +34,9 @@ public class Section implements Serializable {
 	public Section() {
 	}
 
-	public Section(Long id, String title, String description, Integer position, String imgUri, Resource resource, Section prerequisite) {
+	public Section(Long id, String title, String description, Integer position, String imgUri, Resource resource,
+			Section prerequisite) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -100,7 +101,7 @@ public class Section implements Serializable {
 	public void setPrerequisite(Section prerequisite) {
 		this.prerequisite = prerequisite;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -108,7 +109,7 @@ public class Section implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -118,6 +119,11 @@ public class Section implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Section other = (Section) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 }
